@@ -17,9 +17,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 //routers
-app.use("/user", usersRouter);
-app.use("/product", productsRouter);
-app.use("/order", ordersRouter);
+app.use("/users", usersRouter);
+app.use("/products", productsRouter);
+app.use("/orders", ordersRouter);
 app.use("/auth", authRouter);
 
 app.use(exceptionHandler);

@@ -5,10 +5,10 @@ const dbConfig = require("./config");
 
 const exceptionHandler = require("./middlewares/exceptionHandler");
 
-const usersRouter = require("./users/users.routes");
-const productsRouter = require("./products/products.routes");
-const ordersRouter = require("./orders/orders.routes");
-const authRouter = require("./auth/auth.routes");
+const usersRouter = require("./API/users/users.routes");
+const productsRouter = require("./API/products/products.routes");
+const ordersRouter = require("./API/orders/orders.routes");
+const authRouter = require("./API/auth/auth.routes");
 
 const app = express();
 

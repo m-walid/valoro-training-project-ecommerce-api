@@ -1,6 +1,7 @@
 const Exception = require("../../exceptions/Exception");
 const user = require("../users/users.model");
-const getOrders = async (req, res, next) => {
+
+const getOrders = ('/:id', async (req, res, next) => {
   try {
     const user = await User.findbyID(req.user.id);
     if(user)
@@ -14,10 +15,10 @@ const getOrders = async (req, res, next) => {
   } catch (error) {
     next(new Exception(error.message, 404));
   }
-};
+});
 
 
-const postOrder = async (req, res, next) => {
+const postOrder =  async (req, res, next) => {
     try {
 
       const user = await User.findbyID(req.user.id); 

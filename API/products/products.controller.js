@@ -7,22 +7,14 @@ const getProducts = async (req, res, next) => {
   try {
     const products = await Product.find();
     res.send(products);
+    res.send({
+      message: "Products fetched successfully."
+  })
   } catch (error) {
     next(new Exception(error.message, 400));
   }
 };
 
-const getProducts = ('/:id', async (req, res, next) => {
-  try {
-    const product = await Product.findById(req.params.id);
-    if (product == null) {
-      next(new Exception(error.message, 404))
-    }
-    res.send(product);
-  } catch (error) {
-    next(new Exception(error.message, 500));
-  }
-});
 
 //getting one 
 const getProducts = ('/:id', async (req, res, next) => {
@@ -32,6 +24,9 @@ const getProducts = ('/:id', async (req, res, next) => {
       next(new Exception(error.message, 404))
     }
     res.send(product);
+    res.send({
+      message: "Product fetched successfully."
+  })
   } catch (error) {
     next(new Exception(error.message, 500));
   }
@@ -43,6 +38,9 @@ const postProduct = async (req, res, next) =>{
 
   try{
     await product.save()
+    res.send({
+      message: "Product posted successfully."
+  })
   } catch (error) {
     next(new Exception("couldn't post product", 401))
   }
@@ -76,7 +74,9 @@ const editProduct =('/:id', async(req, res, next) => {
     }
     const updatedProduct = await res.product.save()
     res.send(updatedProduct)
-
+    res.send({
+      message: "Product updated successfully."
+  })
   } catch (error) {
     next(new Exception(error.message, 500))
   }
@@ -89,7 +89,7 @@ const deleteProduct = ('/:id', async(req, res, next) => {
     product.remove()
     res.send({
       message: "Product deleted successfully."
-  });
+  })
   } catch (error) {
     next(new Exception(error.message, 400))
   }

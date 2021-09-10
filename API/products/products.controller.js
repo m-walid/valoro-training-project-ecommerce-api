@@ -16,7 +16,7 @@ const getProducts = async (req, res, next) => {
 
 
 //getting one 
-const getProducts = ('/:id', async (req, res, next) => {
+const getProduct = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);
     if (product == null) {
@@ -28,7 +28,7 @@ const getProducts = ('/:id', async (req, res, next) => {
   } catch (error) {
     next(new Exception(error.message, 500));
   }
-});
+};
 
 //posting product
 const postProduct = async (req, res, next) =>{
@@ -45,7 +45,7 @@ const postProduct = async (req, res, next) =>{
 }
 
 //editing product
-const editProduct =('/:id', async(req, res, next) => {
+const editProduct = async(req, res, next) => {
   try {
     const product = await Product.findById(req.params.id)
     if(product == null){
@@ -77,10 +77,10 @@ const editProduct =('/:id', async(req, res, next) => {
   } catch (error) {
     next(new Exception(error.message, 500))
   }
-})
+}
 
 //deleting product
-const deleteProduct = ('/:id', async(req, res, next) => {
+const deleteProduct =  async(req, res, next) => {
   try {
     const product = await Product.findById(req.params.id)
     product.remove()
@@ -90,10 +90,11 @@ const deleteProduct = ('/:id', async(req, res, next) => {
   } catch (error) {
     next(new Exception(error.message, 400))
   }
-})
+}
 
 module.exports = {
   getProducts,
+  getProduct,
   postProduct,
   editProduct,
   deleteProduct

@@ -6,9 +6,8 @@ const router = require("./products.routes");
 const getProducts = async (req, res, next) => {
   try {
     const products = await Product.find();
-    res.send(products);
     res.send({
-      message: "Products fetched successfully."
+      message: "Products fetched successfully.", products
   })
   } catch (error) {
     next(new Exception(error.message, 400));
@@ -23,9 +22,8 @@ const getProducts = ('/:id', async (req, res, next) => {
     if (product == null) {
       next(new Exception(error.message, 404))
     }
-    res.send(product);
     res.send({
-      message: "Product fetched successfully."
+      message: "Product fetched successfully.", products
   })
   } catch (error) {
     next(new Exception(error.message, 500));
@@ -73,9 +71,8 @@ const editProduct =('/:id', async(req, res, next) => {
       res.product.quantity = req.body.quantity
     }
     const updatedProduct = await res.product.save()
-    res.send(updatedProduct)
     res.send({
-      message: "Product updated successfully."
+      message: "Product updated successfully.", updatedProduct
   })
   } catch (error) {
     next(new Exception(error.message, 500))

@@ -13,7 +13,7 @@ const getOrders =  async (req, res, next) => {
 
     
   } catch (error) {
-    next(new Exception(error.message, 404));
+    next(new Exception(error.message, 400));
   }
 };
 
@@ -30,7 +30,7 @@ const postOrder =  async (req, res, next) => {
       });
     
     } catch (error) {
-      next(new Exception("ID not found, please enter a valid id", 404));
+      next(new Exception(error.message, 400));
     }
   };
 

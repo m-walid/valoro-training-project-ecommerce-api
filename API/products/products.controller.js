@@ -19,12 +19,14 @@ const getProducts = async (req, res, next) => {
 const getProduct = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (product == null) {
-      next(new Exception(error.message, 404))
+    if (!product) {
+      next(new Exception('product not found', 404))
+    }else{
+
+      res.send({
+        message: "Product fetched successfully.", products
+    })
     }
-    res.send({
-      message: "Product fetched successfully.", products
-  })
   } catch (error) {
     next(new Exception(error.message, 500));
   }
@@ -48,32 +50,35 @@ const postProduct = async (req, res, next) =>{
 const editProduct = async(req, res, next) => {
   try {
     const product = await Product.findById(req.params.id)
-    if(product == null){
-      next(new Exception(error.message, 404))
+    if(!product){
+      next(new Exception('product not found', 404))
     }
-    if(req.body.title != null){
-      res.product.title = req.body.title
-    }
+    else{
 
-    if(req.body.price != null){
-      res.product.price = req.body.price
+      if(req.body.title){
+        res.product.title = req.body.title
+      }
+  
+      if(req.body.price){
+        res.product.price = req.body.price
+      }
+  
+      if(req.body.description){
+        res.product.description = req.body.description
+      }
+  
+      if(req.body.img){
+        res.product.img = req.body.img
+      }
+  
+      if(req.body.quantity){
+        res.product.quantity = req.body.quantity
+      }
+      const updatedProduct = await res.product.save()
+      res.send({
+        message: "Product updated successfully.", updatedProduct
+    })
     }
-
-    if(req.body.description != null){
-      res.product.description = req.body.description
-    }
-
-    if(req.body.img != null){
-      res.product.img = req.body.img
-    }
-
-    if(req.body.quantity != null){
-      res.product.quantity = req.body.quantity
-    }
-    const updatedProduct = await res.product.save()
-    res.send({
-      message: "Product updated successfully.", updatedProduct
-  })
   } catch (error) {
     next(new Exception(error.message, 500))
   }
@@ -83,10 +88,16 @@ const editProduct = async(req, res, next) => {
 const deleteProduct =  async(req, res, next) => {
   try {
     const product = await Product.findById(req.params.id)
-    product.remove()
-    res.send({
-      message: "Product deleted successfully."
-  })
+    if (!product) {
+      next(new Exception('product not found', 404))
+    }
+    else{
+
+      await product.remove()
+      res.send({
+        message: "Product deleted successfully."
+    })
+    }
   } catch (error) {
     next(new Exception(error.message, 400))
   }

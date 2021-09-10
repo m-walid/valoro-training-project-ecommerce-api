@@ -1,9 +1,9 @@
 const Exception = require("../../exceptions/Exception");
-const user = require("../users/users.model");
+const User = require("../users/users.model");
 
 const getOrders =  async (req, res, next) => {
   try {
-    const user = await User.findbyID(req.user.id);
+    const user = await User.findById(req.user.id);
     if(user)
     {
         res.send(user.orders);
@@ -20,8 +20,8 @@ const getOrders =  async (req, res, next) => {
 
 const postOrder =  async (req, res, next) => {
     try {
-
-      const user = await User.findbyID(req.user.id); 
+      
+      const user = await User.findById(req.user.id); 
       user.order.push(req.body);
 
       await user.save();

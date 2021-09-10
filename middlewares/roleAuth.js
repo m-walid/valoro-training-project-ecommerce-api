@@ -5,7 +5,10 @@ const roleAuth = (role) => {
     if (req.user.role !== role) {
       next(new Exception("Unauthorized", 401));
     }
-    next();
+    else{
+
+      next();
+    }
   };
 };
 

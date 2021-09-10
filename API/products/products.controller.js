@@ -1,6 +1,6 @@
 const Exception = require("../../exceptions/Exception");
 const Product = require("./products.model");
-const getProducts = (req, res, next) => {
+const getProducts = async (req, res, next) => {
   try {
     const products = await Product.find();
     res.send(products);

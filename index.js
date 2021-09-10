@@ -8,7 +8,6 @@ const exceptionHandler = require("./middlewares/exceptionHandler");
 const usersRouter = require("./API/users/users.routes");
 const productsRouter = require("./API/products/products.routes");
 const ordersRouter = require("./API/orders/orders.routes");
-const authRouter = require("./API/auth/auth.routes");
 
 const app = express();
 
@@ -20,7 +19,6 @@ app.use(morgan("dev"));
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 app.use("/orders", ordersRouter);
-app.use("/auth", authRouter);
 
 app.use(exceptionHandler);
 (async () => {

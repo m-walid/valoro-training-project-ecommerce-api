@@ -7,11 +7,11 @@ const cartSchema = new mongoose.Schema({
     required: true,
   },
   qty: {
-    type: number,
+    type: Number,
     required: true,
   },
   price: {
-    type: number,
+    type: Number,
     required: true,
   },
 });
@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
     minlength: [10, "please enter a valid detailed address"],
   },
   totalPrice: {
-    type: number,
+    type: Number,
     required: [true, "total price is required"],
     min: [1, "total price must be postive number"],
   },

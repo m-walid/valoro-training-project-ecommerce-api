@@ -24,7 +24,7 @@ const getProduct = async (req, res, next) => {
     }else{
 
       res.send({
-        message: "Product fetched successfully.", products
+        message: "Product fetched successfully.", product
     })
     }
   } catch (error) {
